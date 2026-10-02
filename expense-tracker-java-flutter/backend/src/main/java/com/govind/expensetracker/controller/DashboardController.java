@@ -1,0 +1,3 @@
+package com.govind.expensetracker.controller;
+import com.govind.expensetracker.dto.DashboardResponse; import com.govind.expensetracker.service.TransactionService; import org.springframework.web.bind.annotation.*; import java.time.YearMonth;
+@RestController @RequestMapping("/api/v1/dashboard") public class DashboardController { private final TransactionService service; public DashboardController(TransactionService service){this.service=service;} @GetMapping public DashboardResponse dashboard(@RequestParam(required=false) String month){return service.dashboard(month==null||month.isBlank()?YearMonth.now():YearMonth.parse(month));} }
